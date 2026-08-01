@@ -50,19 +50,20 @@ export default function handler(req, res) {
     opacity: 0.4;
   }
 
+  /* Card compacta */
   .card {
     position: relative;
     z-index: 10;
-    width: 100%;
-    max-width: 420px;
-    padding: 48px 40px;
+    width: 90%;
+    max-width: 340px;
+    padding: 32px 24px;
     background: rgba(15, 15, 18, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
+    border-radius: 20px;
     backdrop-filter: blur(20px);
     box-shadow: 
       0 0 0 1px rgba(255, 255, 255, 0.03),
-      0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      0 20px 40px -10px rgba(0, 0, 0, 0.6);
     text-align: center;
   }
 
@@ -77,46 +78,46 @@ export default function handler(req, res) {
   }
 
   .icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 28px;
-    border-radius: 18px;
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 20px;
+    border-radius: 14px;
     background: linear-gradient(135deg, rgba(255, 80, 80, 0.15), rgba(255, 50, 50, 0.05));
     border: 1px solid rgba(255, 80, 80, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    font-size: 24px;
   }
 
   h1 {
-    font-size: 22px;
+    font-size: 19px;
     font-weight: 600;
     letter-spacing: -0.3px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     color: #fff;
   }
 
   .subtitle {
-    font-size: 13px;
+    font-size: 12px;
     color: #888;
     font-weight: 400;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
     letter-spacing: 0.3px;
   }
 
   .divider {
-    width: 40px;
+    width: 32px;
     height: 1px;
     background: rgba(255, 255, 255, 0.12);
-    margin: 0 auto 28px;
+    margin: 0 auto 20px;
   }
 
   p {
-    font-size: 14.5px;
-    line-height: 1.65;
+    font-size: 13.5px;
+    line-height: 1.55;
     color: #999;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
 
   p strong {
@@ -127,29 +128,29 @@ export default function handler(req, res) {
   .badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
+    gap: 6px;
+    padding: 6px 14px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 100px;
-    font-size: 11.5px;
+    font-size: 10.5px;
     color: #aaa;
     letter-spacing: 0.4px;
   }
 
   .badge span {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     background: #ff4d4d;
     border-radius: 50%;
-    box-shadow: 0 0 8px #ff4d4d;
+    box-shadow: 0 0 6px #ff4d4d;
   }
 
   .footer {
-    margin-top: 28px;
-    font-size: 11px;
+    margin-top: 20px;
+    font-size: 10.5px;
     color: #555;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
   }
 </style>
 </head>
