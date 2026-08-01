@@ -1,6 +1,7 @@
 export default function handler(req, res) {
   const userAgent = req.headers['user-agent'] || '';
 
+  // Detectar si la petición viene de Roblox o de un ejecutor
   const isRoblox = userAgent.includes('Roblox') || userAgent.includes('RobloxStudio');
 
   if (!isRoblox) {
@@ -11,8 +12,8 @@ export default function handler(req, res) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CodeVault • Access Restricted</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Access Blocked</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
   * {
@@ -22,153 +23,95 @@ export default function handler(req, res) {
   }
 
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #000;
-    color: #e8e8e8;
+    font-family: 'Fira Code', monospace;
+    background: #050505;
+    color: #fff;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    -webkit-font-smoothing: antialiased;
+    position: relative;
   }
 
+  /* Fondo de estrellas/partículas */
   canvas {
     position: fixed;
     inset: 0;
     z-index: 1;
   }
 
-  /* Card premium */
+  /* Card estilo imagen */
   .card {
     position: relative;
     z-index: 10;
-    width: 90%;
-    max-width: 340px;
-    padding: 36px 28px;
-    background: rgba(18, 18, 20, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 22px;
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    box-shadow: 
-      0 0 0 1px rgba(255, 255, 255, 0.03),
-      0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    width: 88%;
+    max-width: 380px;
+    padding: 32px 20px 24px 20px;
+    background: rgba(10, 10, 12, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
     text-align: center;
-    opacity: 0;
-    transform: translateY(18px) scale(0.97);
-    animation: cardIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
   }
 
-  @keyframes cardIn {
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+  /* Icono de advertencia animado */
+  .alert-icon {
+    font-size: 38px;
+    margin-bottom: 8px;
+    display: inline-block;
+    filter: drop-shadow(0 0 12px rgba(255, 204, 0, 0.6));
   }
 
-  /* Línea superior sutil */
-  .card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 18%;
-    right: 18%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  /* Línea brillante debajo del icono */
+  .line-top {
+    width: 60px;
+    height: 3px;
+    background: #ffffff;
+    margin: 0 auto 16px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px #ffffff, 0 0 18px rgba(255, 255, 255, 0.8);
   }
 
-  /* Icono */
-  .icon {
-    width: 54px;
-    height: 54px;
-    margin: 0 auto 22px;
-    border-radius: 16px;
-    background: linear-gradient(145deg, rgba(255, 70, 70, 0.18), rgba(255, 40, 40, 0.06));
-    border: 1px solid rgba(255, 80, 80, 0.22);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    animation: float 4.5s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-
+  /* Título ACCESS BLOCKED */
   h1 {
-    font-size: 18.5px;
+    font-family: 'Fira Code', monospace;
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: -0.3px;
-    margin-bottom: 5px;
-    background: linear-gradient(180deg, #f5f5f5 0%, #b0b0b0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
   }
 
-  .subtitle {
-    font-size: 11.5px;
-    color: #8a8a8a;
-    font-weight: 400;
-    margin-bottom: 18px;
-    letter-spacing: 0.4px;
+  /* Línea brillante debajo del título */
+  .line-bottom {
+    width: 110px;
+    height: 3px;
+    background: #ffffff;
+    margin: 0 auto 20px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px #ffffff, 0 0 18px rgba(255, 255, 255, 0.8);
   }
 
-  .divider {
-    width: 28px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.14);
+  /* Separador punteado */
+  .dotted-divider {
+    border-top: 1px dotted rgba(255, 255, 255, 0.2);
     margin: 0 auto 18px;
+    width: 90%;
   }
 
+  /* Mensaje explicativo */
   p {
-    font-size: 13px;
-    line-height: 1.55;
-    color: #9a9a9a;
-    margin-bottom: 22px;
-  }
-
-  p strong {
-    color: #d0d0d0;
-    font-weight: 500;
-  }
-
-  /* Badge */
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 6px 14px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 100px;
+    font-family: 'Fira Code', monospace;
     font-size: 10.5px;
-    color: #aaa;
+    line-height: 1.7;
+    color: #888888;
     letter-spacing: 0.5px;
-  }
-
-  .badge span {
-    width: 5px;
-    height: 5px;
-    background: #ff3b3b;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #ff3b3b;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.85); }
-  }
-
-  .footer {
-    margin-top: 20px;
-    font-size: 10px;
-    color: #555;
-    letter-spacing: 0.9px;
+    padding: 0 10px;
   }
 </style>
 </head>
@@ -177,24 +120,17 @@ export default function handler(req, res) {
 <canvas id="particles"></canvas>
 
 <div class="card">
-  <div class="icon">🛡</div>
+  <div class="alert-icon">⚠️</div>
+  <div class="line-top"></div>
   
-  <h1>Access Restricted</h1>
-  <div class="subtitle">CodeVault System Protection</div>
+  <h1>ACCESS BLOCKED</h1>
   
-  <div class="divider"></div>
+  <div class="line-bottom"></div>
+  <div class="dotted-divider"></div>
   
   <p>
-    This resource is exclusively available within the <strong>Roblox client</strong>.<br>
-    Browser access has been blocked for security reasons.
+    Unauthorized request detected · Access restricted to Roblox environment
   </p>
-  
-  <div class="badge">
-    <span></span>
-    PROTECTION ACTIVE
-  </div>
-  
-  <div class="footer">Protected by CodeVault</div>
 </div>
 
 <script>
@@ -203,7 +139,6 @@ export default function handler(req, res) {
 
   let w, h;
   const particles = [];
-  const count = 70;
 
   function resize() {
     w = canvas.width = innerWidth;
@@ -212,21 +147,21 @@ export default function handler(req, res) {
   resize();
   addEventListener("resize", resize);
 
-  for (let i = 0; i < count; i++) {
+  // Generar partículas flotantes (estrellas)
+  for (let i = 0; i < 90; i++) {
     particles.push({
       x: Math.random() * w,
       y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.18,
-      vy: (Math.random() - 0.5) * 0.18,
-      r: Math.random() * 1.4 + 0.4,
-      alpha: Math.random() * 0.4 + 0.25
+      vx: (Math.random() - 0.5) * 0.1,
+      vy: (Math.random() - 0.5) * 0.1,
+      r: Math.random() * 1.5 + 0.3,
+      alpha: Math.random() * 0.7 + 0.2
     });
   }
 
   function draw() {
     ctx.clearRect(0, 0, w, h);
 
-    // Partículas
     particles.forEach(p => {
       p.x += p.vx;
       p.y += p.vy;
@@ -238,27 +173,9 @@ export default function handler(req, res) {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = \`rgba(255, 255, 255, \${p.alpha})\`;
+      ctx.fillStyle = "rgba(255, 255, 255, " + p.alpha + ")";
       ctx.fill();
     });
-
-    // Conexiones suaves
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 110) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = \`rgba(255, 255, 255, \${0.045 - dist / 2400})\`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
 
     requestAnimationFrame(draw);
   }
@@ -271,7 +188,7 @@ export default function handler(req, res) {
     `);
   }
 
-  // Si entra desde Roblox
+  // Si entra desde Roblox/Ejecutor
   res.setHeader('Content-Type', 'text/plain');
   return res.status(200).send(`
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/script.lua"))()
