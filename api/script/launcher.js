@@ -34,7 +34,6 @@ export default function handler(req, res) {
     position: relative;
   }
 
-  /* Fondo sutil */
   .bg {
     position: fixed;
     inset: 0;
@@ -44,7 +43,6 @@ export default function handler(req, res) {
     z-index: 0;
   }
 
-  /* Partículas sutiles */
   canvas {
     position: fixed;
     inset: 0;
@@ -52,7 +50,6 @@ export default function handler(req, res) {
     opacity: 0.4;
   }
 
-  /* Card principal */
   .card {
     position: relative;
     z-index: 10;
@@ -69,7 +66,6 @@ export default function handler(req, res) {
     text-align: center;
   }
 
-  /* Línea superior glow */
   .card::before {
     content: "";
     position: absolute;
@@ -80,7 +76,6 @@ export default function handler(req, res) {
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
   }
 
-  /* Icono */
   .icon {
     width: 64px;
     height: 64px;
@@ -129,7 +124,6 @@ export default function handler(req, res) {
     font-weight: 500;
   }
 
-  /* Badge */
   .badge {
     display: inline-flex;
     align-items: center;
@@ -168,12 +162,12 @@ export default function handler(req, res) {
   <div class="icon">🛡</div>
   
   <h1>Access Restricted</h1>
-  <div class="subtitle">CodeVoult Sistem Protect</div>
+  <div class="subtitle">CodeVault System Protection</div>
   
   <div class="divider"></div>
   
   <p>
-    This resource is exclusive available within the <strong>Roblox client</strong>.<br>
+    This resource is exclusively available within the <strong>Roblox client</strong>.<br>
     Browser access has been blocked for security reasons.
   </p>
   
@@ -182,7 +176,7 @@ export default function handler(req, res) {
     PROTECTION ACTIVE
   </div>
   
-  <div class="footer">Protected by CodeVoult</div>
+  <div class="footer">Protected by CodeVault</div>
 </div>
 
 <script>
@@ -199,7 +193,6 @@ export default function handler(req, res) {
   resize();
   addEventListener("resize", resize);
 
-  // Partículas más sutiles
   for (let i = 0; i < 60; i++) {
     particles.push({
       x: Math.random() * w,
@@ -228,7 +221,6 @@ export default function handler(req, res) {
       ctx.fill();
     });
 
-    // Conexiones muy sutiles
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
@@ -239,7 +231,7 @@ export default function handler(req, res) {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(255, 255, 255, ${0.04 - dist / 2500})`;
+          ctx.strokeStyle = "rgba(255, 255, 255, " + (0.04 - dist / 2500) + ")";
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }
